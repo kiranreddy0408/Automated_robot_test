@@ -10,7 +10,7 @@ ${Browser}        firefox
 *** Test Cases ***
 firefox test
     Open Browser  ${URL}  ${BROWSER}
-    Title Should Be    gptfu-transform yourself
+    Title Should Be    gptfu
     Close Browser
 
 
