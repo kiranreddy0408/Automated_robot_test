@@ -4,7 +4,7 @@ Library  SeleniumLibrary
 *** Variables ***
 ${URL}            https://s.gptfu.com
 ${Browser}        firefox
-${SearchInput}    id=64778240e8901
+${SearchInput}    class=aws-search-field
 ${SearchButton}   class=aws-search-btn
 ${SearchKeyword}  fliki      #replace fliki with search key
 ${SearchKeyword2}  abcdefg
