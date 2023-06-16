@@ -1,5 +1,5 @@
 # runs tests for push-events, for pull requests and using cron schedule:
-name: Run Robot Framework Tests
+name: Run Robot Framework Tests2
 on:
   push:
     # runs tests for commits pushed to master
@@ -25,7 +25,7 @@ jobs:
         - name: Create folder for reports
           run: mkdir reports
         # run Robot Framework tests inside Docker container
-        - name: Run Robot Framework Tests
+        - name: Run Robot Framework Tests2
           # container used here is ppodgorsek/robot-framework:latest
           # it is strongly recommended to use versioned image (ie. not the tag latest like here) to maintain dependencies
           # see container documentation for usage: https://hub.docker.com/r/ppodgorsek/robot-framework/dockerfile
