@@ -16,7 +16,7 @@ on:
     # run tests once a year in January 1st
     - cron:  '0 0 1 1 *'
 jobs:
-    run_tests:
+    run_tests2:
         runs-on: ubuntu-latest
         steps:
         # checkout code from a repository
