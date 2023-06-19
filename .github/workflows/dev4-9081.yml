@@ -1,5 +1,5 @@
 # runs tests for push-events, for pull requests and using cron schedule:
-name: dev4(9081) Test Suite runner
+name: dev4-9081 Test Suite runner
 on:
   push:
     # runs tests for commits pushed to master
@@ -25,7 +25,7 @@ jobs:
         - name: Create folder for reports
           run: mkdir reports
         # run Robot Framework tests inside Docker container
-        - name: dev4(9081) Test Suite runner
+        - name: dev4-9081 Test Suite runner
           # container used here is ppodgorsek/robot-framework:latest
           # it is strongly recommended to use versioned image (ie. not the tag latest like here) to maintain dependencies
           # see container documentation for usage: https://hub.docker.com/r/ppodgorsek/robot-framework/dockerfile
@@ -35,7 +35,7 @@ jobs:
           run: |
             docker run \
               -v ${PWD}/reports:/opt/robotframework/reports:Z \
-              -v ${PWD}/tests/dev4(9081):/opt/robotframework/tests/dev4(9081):Z \
+              -v ${PWD}/tests/dev4-9081:/opt/robotframework/tests/dev4-9081:Z \
               -e ROBOT_OPTIONS="--variable DINOSAUR:Achillobator --variable NOT_DINOSAUR:kissa" \
               --user $(id -u):$(id -g) \
               ppodgorsek/robot-framework:latest
