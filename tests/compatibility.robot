@@ -4,7 +4,7 @@ Library           SeleniumLibrary
 
 *** Variables ***
 ${URL}            http://dev4.gptfu.com:6080/
-${Browser}        chrome
+${Browser}        firefox
 
 
 *** Test Cases ***
