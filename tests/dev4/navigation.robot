@@ -13,7 +13,7 @@ Verify Apps Link
     Click Element  xpath=//a[@href="/product-category/apps/" and contains(@class, 'bi-grid-fill')]
     Page Should Contain  Apps 
 Verify Home link
-    Click Element  xpath=//a[@href="https://dev4.gptfu.com:6080/"]
+    Click Element  xpath=//a[@href="http://dev4.gptfu.com:6080/"]
      Page Should Contain  Latest Listings 
 Verify Papers link
     Click Element  xpath=//a[@href="/product-category/papers/" and contains(@class,'bi bi-newspaper')]
