@@ -3,7 +3,7 @@ Documentation     My First Test Suite
 Library           SeleniumLibrary
 
 *** Variables ***
-${URL}            https://d2.gptfu.com:6082
+${URL}            https://dev4.gptfu.com:6080/
 ${Browser}        chrome
 
 
