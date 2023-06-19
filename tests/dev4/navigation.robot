@@ -7,13 +7,13 @@ ${URL}            http://dev4.gptfu.com:6080/
 ${Browser}        firefox
 
 *** Test Cases ***
-Verify Apps Link
+Open site
     Open Browser  ${URL}  ${BROWSER}  
-Click link
+Verify Apps Link
     Click Element  xpath=//a[@href="/product-category/apps/" and contains(@class, 'bi-grid-fill')]
     Page Should Contain  Apps 
 Verify Home link
-    Click Element  xpath=//a[@href="https://s.gptfu.com/"]
+    Click Element  xpath=//a[@href="https://dev4.gptfu.com:6080/"]
      Page Should Contain  Latest Listings 
 Verify Papers link
     Click Element  xpath=//a[@href="/product-category/papers/" and contains(@class,'bi bi-newspaper')]
@@ -28,5 +28,5 @@ Verify Addlisting link
      Page Should Contain  Add New Listing 
 Verify logo link
 
-    Click Element  xpath=//a[@href="https://s.gptfu.com/" and contains(@class,'logo')]
+    Click Element  xpath=//a[@href="https://dev4.gptfu.com:6080/" and contains(@class,'logo')]
     Page Should Contain  Latest Listings 
