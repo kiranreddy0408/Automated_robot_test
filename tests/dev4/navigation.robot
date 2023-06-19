@@ -17,7 +17,8 @@ Verify Home link
      Page Should Contain  Latest Listings 
 Verify Papers link
     Click Element  xpath=//a[@href="/product-category/papers/" and contains(@class,'bi bi-newspaper')]
-     Page Should Contain  Papers 
+     Page Should Contain  Papers
+     Title Should Be    Paper Archives - gptfu
 Verify News link
 
     Click Element  xpath=//a[@href="/product-category/news/" and contains(@class,'bi bi-globe2')]
