@@ -28,5 +28,5 @@ Verify Addlisting link
      Page Should Contain  Add New Listing 
 Verify logo link
 
-    Click Element  xpath=//a[@href="https://dev4.gptfu.com:6080/" and contains(@class,'logo')]
+    Click Element  xpath=//a[@href="http://dev4.gptfu.com:6080/" and contains(@class,'logo')]
     Page Should Contain  Latest Listings 
