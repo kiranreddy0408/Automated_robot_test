@@ -3,7 +3,7 @@ Documentation     My First Test Suite
 Library           SeleniumLibrary
 
 *** Variables ***
-${URL}            https://d.gptfu.com:6082
+${URL}            https://s.gptfu.com
 ${Browser}        firefox
 
 
