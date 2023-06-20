@@ -1,8 +1,8 @@
 *** Settings ***
 Library  SeleniumLibrary
+Resource    tests/dev4-6080.robot
 
 *** Variables ***
-${URL}            http://dev4.gptfu.com:6080/
 ${Browser}        firefox
 ${SearchInput}    class=aws-search-field
 ${SearchButton}   class=aws-search-btn
