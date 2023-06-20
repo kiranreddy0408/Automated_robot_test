@@ -1,8 +1,7 @@
 *** Settings ***
 Library  SeleniumLibrary
-
+Variables    tests/dev4-6080.robot
 *** Variables ***
-${URL}            tests/dev4-6080.robot
 ${Browser}        firefox
 ${SearchInput}    class=aws-search-field
 ${SearchButton}   class=aws-search-btn
