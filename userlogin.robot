@@ -5,7 +5,7 @@ Library           SeleniumLibrary
 *** Variables ***
 ${URL}                  https://s.gptfu.com/my-account/
 ${Browser}              Chrome
-${UsernameInput}        id=username
+${UsernameInput}        id=user
 ${EmailaddressInput}    id=username
 ${PasswordInput}        id=password
 ${loginButton}          name=login
