@@ -1,6 +1,6 @@
 *** Settings ***
 Library  SeleniumLibrary
-Resources    config.resource
+Resource    config.resource
 *** Variables ***
 ${Browser}        firefox
 ${SearchInput}    class=aws-search-field
