@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation     My First Test Suite
 Library           SeleniumLibrary
-Resources         tests/dev4-6080.robot
+Resource         config.resource
 *** Variables ***
 
 ${Browser}        firefox
