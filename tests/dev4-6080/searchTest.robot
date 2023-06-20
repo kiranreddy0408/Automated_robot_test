@@ -2,7 +2,7 @@
 Library  SeleniumLibrary
 
 *** Variables ***
-${URL}            http://dev4.gptfu.com:6080/
+${URL}            tests/dev4-6080.robot
 ${Browser}        firefox
 ${SearchInput}    class=aws-search-field
 ${SearchButton}   class=aws-search-btn
