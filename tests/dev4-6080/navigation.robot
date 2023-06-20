@@ -1,9 +1,9 @@
 *** Settings ***
 Documentation     My First Test Suite
 Library           SeleniumLibrary
-
+Resources         tests/dev4-6080.robot
 *** Variables ***
-${URL}            http://dev4.gptfu.com:6080/
+
 ${Browser}        firefox
 
 *** Test Cases ***
