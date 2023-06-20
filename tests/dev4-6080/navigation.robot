@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation     My First Test Suite
 Library           SeleniumLibrary
-Resources         config.resource
+Resource        config.resource
 *** Variables ***
 
 ${Browser}        firefox
