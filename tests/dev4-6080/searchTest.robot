@@ -1,6 +1,6 @@
 *** Settings ***
 Library  SeleniumLibrary
-Resource    tests/dev4-6080.robot
+Variables    tests/dev4-6080.robot
 
 *** Variables ***
 ${Browser}        firefox
