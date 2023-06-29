@@ -8,7 +8,7 @@ on:
 jobs:
   run_tests1:
     runs-on: ubuntu-latest
-    if: ${{ github.event.pull_request.title == 'Run Tests 1' }}
+    if: ${{ contains(github.event.pull_request.title, 'Run Tests 1') }}
     steps:
         # checkout code from a repository
         - uses: actions/checkout@v3
@@ -22,7 +22,7 @@ jobs:
           # see container documentation for usage: https://hub.docker.com/r/ppodgorsek/robot-framework/dockerfile
           # it is required that GitHub repository contains folder "reports". Commit some file inside "reports" to create it
           # place tests in folder tests or change docker run command accordingly
-          # configure -e ROBOT_OPTIONS according to yout tests, or remove it if no special configuration is needed
+          # configure -e ROBOT_OPTIONS according to your tests, or remove it if no special configuration is needed
           run: |
             docker run \
               -v ${PWD}/reports:/opt/robotframework/reports:Z \
@@ -36,11 +36,12 @@ jobs:
           if: always()
           with:
             name: reports
-            # set path to Robot Framework results reports. Exclude dummy file that is needed because of ppodgorsek image priviledges.
+            # set path to Robot Framework results reports. Exclude dummy file that is needed because of ppodgorsek image privileges.
             path: ${{ github.workspace }}/reports
+
   run_tests2:
     runs-on: ubuntu-latest
-    if: ${{ github.event.pull_request.title == 'Run Tests 2' }}
+    if: ${{ contains(github.event.pull_request.title, 'Run Tests 2') }}
     steps:
         # checkout code from a repository
         - uses: actions/checkout@v3
@@ -54,7 +55,7 @@ jobs:
           # see container documentation for usage: https://hub.docker.com/r/ppodgorsek/robot-framework/dockerfile
           # it is required that GitHub repository contains folder "reports". Commit some file inside "reports" to create it
           # place tests in folder tests or change docker run command accordingly
-          # configure -e ROBOT_OPTIONS according to yout tests, or remove it if no special configuration is needed
+          # configure -e ROBOT_OPTIONS according to your tests, or remove it if no special configuration is needed
           run: |
             docker run \
               -v ${PWD}/reports:/opt/robotframework/reports:Z \
@@ -68,12 +69,12 @@ jobs:
           if: always()
           with:
             name: reports
-            # set path to Robot Framework results reports. Exclude dummy file that is needed because of ppodgorsek image priviledges.
+            # set path to Robot Framework results reports. Exclude dummy file that is needed because of ppodgorsek image privileges.
             path: ${{ github.workspace }}/reports
 
   run_tests3:
     runs-on: ubuntu-latest
-    if: ${{ github.event.pull_request.title == 'Run Tests 3' }}
+    if: ${{ contains(github.event.pull_request.title, 'Run Tests 3') }}
     steps:
         # checkout code from a repository
         - uses: actions/checkout@v3
@@ -87,7 +88,7 @@ jobs:
           # see container documentation for usage: https://hub.docker.com/r/ppodgorsek/robot-framework/dockerfile
           # it is required that GitHub repository contains folder "reports". Commit some file inside "reports" to create it
           # place tests in folder tests or change docker run command accordingly
-          # configure -e ROBOT_OPTIONS according to yout tests, or remove it if no special configuration is needed
+          # configure -e ROBOT_OPTIONS according to your tests, or remove it if no special configuration is needed
           run: |
             docker run \
               -v ${PWD}/reports:/opt/robotframework/reports:Z \
@@ -101,5 +102,5 @@ jobs:
           if: always()
           with:
             name: reports
-            # set path to Robot Framework results reports. Exclude dummy file that is needed because of ppodgorsek image priviledges.
+            # set path to Robot Framework results reports. Exclude dummy file that is needed because of ppodgorsek image privileges.
             path: ${{ github.workspace }}/reports
