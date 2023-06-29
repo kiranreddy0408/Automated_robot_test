@@ -1,4 +1,4 @@
-name: dev4-6080 Test Suite runner
+name: Test Suite runner
 
 on:
   pull_request:
@@ -6,9 +6,9 @@ on:
       - '**.md'
 
 jobs:
-  run_tests1:
+  kiran-d2:
     runs-on: ubuntu-latest
-    if: ${{ github.event.pull_request.title == 'Run Tests 1' }}
+    if: ${{ github.event.pull_request.title == 'kiran-d2' }}
     steps:
         # checkout code from a repository
         - uses: actions/checkout@v3
@@ -26,7 +26,7 @@ jobs:
           run: |
             docker run \
               -v ${PWD}/reports:/opt/robotframework/reports:Z \
-              -v ${PWD}/tests/dev4-9081:/opt/robotframework/tests/dev4-9081:Z \
+              -v ${PWD}/tests/kiran-d2:/opt/robotframework/tests/kiran-d2:Z \
               -e ROBOT_OPTIONS="--variable DINOSAUR:Achillobator --variable NOT_DINOSAUR:kissa" \
               --user $(id -u):$(id -g) \
               ppodgorsek/robot-framework:latest
@@ -38,9 +38,9 @@ jobs:
             name: reports
             # set path to Robot Framework results reports. Exclude dummy file that is needed because of ppodgorsek image priviledges.
             path: ${{ github.workspace }}/reports
-  run_tests2:
+  madhu-d:
     runs-on: ubuntu-latest
-    if: ${{ github.event.pull_request.title == 'Run Tests 2' }}
+    if: ${{ github.event.pull_request.title == 'madhu-d' }}
     steps:
         # checkout code from a repository
         - uses: actions/checkout@v3
@@ -58,7 +58,7 @@ jobs:
           run: |
             docker run \
               -v ${PWD}/reports:/opt/robotframework/reports:Z \
-              -v ${PWD}/tests/dev5:/opt/robotframework/tests/dev5:Z \
+              -v ${PWD}/tests/madhu-d:/opt/robotframework/tests/madhu-d:Z \
               -e ROBOT_OPTIONS="--variable DINOSAUR:Achillobator --variable NOT_DINOSAUR:kissa" \
               --user $(id -u):$(id -g) \
               ppodgorsek/robot-framework:latest
@@ -71,9 +71,9 @@ jobs:
             # set path to Robot Framework results reports. Exclude dummy file that is needed because of ppodgorsek image priviledges.
             path: ${{ github.workspace }}/reports
 
-  run_tests3:
+  joel-dev4:
     runs-on: ubuntu-latest
-    if: ${{ github.event.pull_request.title == 'Run Tests 3' }}
+    if: ${{ github.event.pull_request.title == 'joel-dev4' }}
     steps:
         # checkout code from a repository
         - uses: actions/checkout@v3
@@ -91,7 +91,7 @@ jobs:
           run: |
             docker run \
               -v ${PWD}/reports:/opt/robotframework/reports:Z \
-              -v ${PWD}/tests/dev4-6080:/opt/robotframework/tests/dev4-6080:Z \
+              -v ${PWD}/tests/joel-dev4:/opt/robotframework/tests/joel-dev4:Z \
               -e ROBOT_OPTIONS="--variable DINOSAUR:Achillobator --variable NOT_DINOSAUR:kissa" \
               --user $(id -u):$(id -g) \
               ppodgorsek/robot-framework:latest
@@ -103,3 +103,196 @@ jobs:
             name: reports
             # set path to Robot Framework results reports. Exclude dummy file that is needed because of ppodgorsek image priviledges.
             path: ${{ github.workspace }}/reports
+
+  phani-dev4:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.pull_request.title == 'phani-dev4' }}
+    steps:
+        # checkout code from a repository
+        - uses: actions/checkout@v3
+        # create folder for test reports
+        - name: Create folder for reports
+          run: mkdir reports
+        # run Robot Framework tests inside Docker container
+        - name: dev4-6080 Test Suite runner
+          # container used here is ppodgorsek/robot-framework:latest
+          # it is strongly recommended to use versioned image (ie. not the tag latest like here) to maintain dependencies
+          # see container documentation for usage: https://hub.docker.com/r/ppodgorsek/robot-framework/dockerfile
+          # it is required that GitHub repository contains folder "reports". Commit some file inside "reports" to create it
+          # place tests in folder tests or change docker run command accordingly
+          # configure -e ROBOT_OPTIONS according to yout tests, or remove it if no special configuration is needed
+          run: |
+            docker run \
+              -v ${PWD}/reports:/opt/robotframework/reports:Z \
+              -v ${PWD}/tests/phani-dev4:/opt/robotframework/tests/phani-dev4:Z \
+              -e ROBOT_OPTIONS="--variable DINOSAUR:Achillobator --variable NOT_DINOSAUR:kissa" \
+              --user $(id -u):$(id -g) \
+              ppodgorsek/robot-framework:latest
+        # upload test reports as a zip file
+        - name: Upload reports
+          uses: actions/upload-artifact@v3
+          if: always()
+          with:
+            name: reports
+            # set path to Robot Framework results reports. Exclude dummy file that is needed because of ppodgorsek image priviledges.
+            path: ${{ github.workspace }}/reports
+  madhusri-dev5:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.pull_request.title == 'madhusri-dev5' }}
+    steps:
+        # checkout code from a repository
+        - uses: actions/checkout@v3
+        # create folder for test reports
+        - name: Create folder for reports
+          run: mkdir reports
+        # run Robot Framework tests inside Docker container
+        - name: dev4-6080 Test Suite runner
+          # container used here is ppodgorsek/robot-framework:latest
+          # it is strongly recommended to use versioned image (ie. not the tag latest like here) to maintain dependencies
+          # see container documentation for usage: https://hub.docker.com/r/ppodgorsek/robot-framework/dockerfile
+          # it is required that GitHub repository contains folder "reports". Commit some file inside "reports" to create it
+          # place tests in folder tests or change docker run command accordingly
+          # configure -e ROBOT_OPTIONS according to yout tests, or remove it if no special configuration is needed
+          run: |
+            docker run \
+              -v ${PWD}/reports:/opt/robotframework/reports:Z \
+              -v ${PWD}/tests/madhusri-dev5:/opt/robotframework/tests/madhusri-dev5:Z \
+              -e ROBOT_OPTIONS="--variable DINOSAUR:Achillobator --variable NOT_DINOSAUR:kissa" \
+              --user $(id -u):$(id -g) \
+              ppodgorsek/robot-framework:latest
+        # upload test reports as a zip file
+        - name: Upload reports
+          uses: actions/upload-artifact@v3
+          if: always()
+          with:
+            name: reports
+            # set path to Robot Framework results reports. Exclude dummy file that is needed because of ppodgorsek image priviledges.
+            path: ${{ github.workspace }}/reports
+  pashu-dev5:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.pull_request.title == 'pashu-dev4' }}
+    steps:
+        # checkout code from a repository
+        - uses: actions/checkout@v3
+        # create folder for test reports
+        - name: Create folder for reports
+          run: mkdir reports
+        # run Robot Framework tests inside Docker container
+        - name: dev4-6080 Test Suite runner
+          # container used here is ppodgorsek/robot-framework:latest
+          # it is strongly recommended to use versioned image (ie. not the tag latest like here) to maintain dependencies
+          # see container documentation for usage: https://hub.docker.com/r/ppodgorsek/robot-framework/dockerfile
+          # it is required that GitHub repository contains folder "reports". Commit some file inside "reports" to create it
+          # place tests in folder tests or change docker run command accordingly
+          # configure -e ROBOT_OPTIONS according to yout tests, or remove it if no special configuration is needed
+          run: |
+            docker run \
+              -v ${PWD}/reports:/opt/robotframework/reports:Z \
+              -v ${PWD}/tests/phani-dev4:/opt/robotframework/tests/phani-dev4:Z \
+              -e ROBOT_OPTIONS="--variable DINOSAUR:Achillobator --variable NOT_DINOSAUR:kissa" \
+              --user $(id -u):$(id -g) \
+              ppodgorsek/robot-framework:latest
+        # upload test reports as a zip file
+        - name: Upload reports
+          uses: actions/upload-artifact@v3
+          if: always()
+          with:
+            name: reports
+            # set path to Robot Framework results reports. Exclude dummy file that is needed because of ppodgorsek image priviledges.
+            path: ${{ github.workspace }}/reports
+  anuj-d3:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.pull_request.title == 'anuj-d3' }}
+    steps:
+        # checkout code from a repository
+        - uses: actions/checkout@v3
+        # create folder for test reports
+        - name: Create folder for reports
+          run: mkdir reports
+        # run Robot Framework tests inside Docker container
+        - name: dev4-6080 Test Suite runner
+          # container used here is ppodgorsek/robot-framework:latest
+          # it is strongly recommended to use versioned image (ie. not the tag latest like here) to maintain dependencies
+          # see container documentation for usage: https://hub.docker.com/r/ppodgorsek/robot-framework/dockerfile
+          # it is required that GitHub repository contains folder "reports". Commit some file inside "reports" to create it
+          # place tests in folder tests or change docker run command accordingly
+          # configure -e ROBOT_OPTIONS according to yout tests, or remove it if no special configuration is needed
+          run: |
+            docker run \
+              -v ${PWD}/reports:/opt/robotframework/reports:Z \
+              -v ${PWD}/tests/anuj-d3:/opt/robotframework/tests/anuj-d3:Z \
+              -e ROBOT_OPTIONS="--variable DINOSAUR:Achillobator --variable NOT_DINOSAUR:kissa" \
+              --user $(id -u):$(id -g) \
+              ppodgorsek/robot-framework:latest
+        # upload test reports as a zip file
+        - name: Upload reports
+          uses: actions/upload-artifact@v3
+          if: always()
+          with:
+            name: reports
+            # set path to Robot Framework results reports. Exclude dummy file that is needed because of ppodgorsek image priviledges.
+            path: ${{ github.workspace }}/reports
+  mira-d3:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.pull_request.title == 'mira-d3' }}
+    steps:
+        # checkout code from a repository
+        - uses: actions/checkout@v3
+        # create folder for test reports
+        - name: Create folder for reports
+          run: mkdir reports
+        # run Robot Framework tests inside Docker container
+        - name: dev4-6080 Test Suite runner
+          # container used here is ppodgorsek/robot-framework:latest
+          # it is strongly recommended to use versioned image (ie. not the tag latest like here) to maintain dependencies
+          # see container documentation for usage: https://hub.docker.com/r/ppodgorsek/robot-framework/dockerfile
+          # it is required that GitHub repository contains folder "reports". Commit some file inside "reports" to create it
+          # place tests in folder tests or change docker run command accordingly
+          # configure -e ROBOT_OPTIONS according to yout tests, or remove it if no special configuration is needed
+          run: |
+            docker run \
+              -v ${PWD}/reports:/opt/robotframework/reports:Z \
+              -v ${PWD}/tests/mira-d3:/opt/robotframework/tests/mira-d3:Z \
+              -e ROBOT_OPTIONS="--variable DINOSAUR:Achillobator --variable NOT_DINOSAUR:kissa" \
+              --user $(id -u):$(id -g) \
+              ppodgorsek/robot-framework:latest
+        # upload test reports as a zip file
+        - name: Upload reports
+          uses: actions/upload-artifact@v3
+          if: always()
+          with:
+            name: reports
+            # set path to Robot Framework results reports. Exclude dummy file that is needed because of ppodgorsek image priviledges.
+            path: ${{ github.workspace }}/reports
+  hari-d3:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.pull_request.title == 'hari-d3' }}
+    steps:
+        # checkout code from a repository
+        - uses: actions/checkout@v3
+        # create folder for test reports
+        - name: Create folder for reports
+          run: mkdir reports
+        # run Robot Framework tests inside Docker container
+        - name: dev4-6080 Test Suite runner
+          # container used here is ppodgorsek/robot-framework:latest
+          # it is strongly recommended to use versioned image (ie. not the tag latest like here) to maintain dependencies
+          # see container documentation for usage: https://hub.docker.com/r/ppodgorsek/robot-framework/dockerfile
+          # it is required that GitHub repository contains folder "reports". Commit some file inside "reports" to create it
+          # place tests in folder tests or change docker run command accordingly
+          # configure -e ROBOT_OPTIONS according to yout tests, or remove it if no special configuration is needed
+          run: |
+            docker run \
+              -v ${PWD}/reports:/opt/robotframework/reports:Z \
+              -v ${PWD}/tests/hari-d3:/opt/robotframework/tests/hari-d3:Z \
+              -e ROBOT_OPTIONS="--variable DINOSAUR:Achillobator --variable NOT_DINOSAUR:kissa" \
+              --user $(id -u):$(id -g) \
+              ppodgorsek/robot-framework:latest
+        # upload test reports as a zip file
+        - name: Upload reports
+          uses: actions/upload-artifact@v3
+          if: always()
+          with:
+            name: reports
+            # set path to Robot Framework results reports. Exclude dummy file that is needed because of ppodgorsek image priviledges.
+            path: ${{ github.workspace }}/reports            
