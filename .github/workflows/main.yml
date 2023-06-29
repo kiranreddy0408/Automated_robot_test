@@ -8,7 +8,7 @@ on:
 jobs:
   run_tests1:
     runs-on: ubuntu-latest
-    if: ${{ contains(github.event.pull_request.comments[0].body, 'Run Tests 1') }}
+    if: ${{ steps.check_comment.outputs.comment_contains_run_tests_1 == 'true' }}
     steps:
         # checkout code from a repository
         - uses: actions/checkout@v3
@@ -40,7 +40,7 @@ jobs:
             path: ${{ github.workspace }}/reports
   run_tests2:
     runs-on: ubuntu-latest
-    if: ${{ contains(github.event.pull_request.comments[0].body, 'Run Tests 2') }}
+    if: ${{ steps.check_comment.outputs.comment_contains_run_tests_2 == 'true' }}
     steps:
         # checkout code from a repository
         - uses: actions/checkout@v3
@@ -73,7 +73,7 @@ jobs:
 
   run_tests3:
     runs-on: ubuntu-latest
-    if: ${{ contains(github.event.pull_request.comments[0].body, 'Run Tests 3') }}
+    if: ${{ steps.check_comment.outputs.comment_contains_run_tests_3 == 'true' }}
     steps:
         # checkout code from a repository
         - uses: actions/checkout@v3
@@ -103,3 +103,29 @@ jobs:
             name: reports
             # set path to Robot Framework results reports. Exclude dummy file that is needed because of ppodgorsek image priviledges.
             path: ${{ github.workspace }}/reports
+  check_comment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Pull Request Comments
+        id: get_comments
+        uses: actions/github-script@v4
+        with:
+          script: |
+            const response = await github.rest.pulls.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+            });
+            console.log(JSON.stringify(response.data));
+            return response.data;
+
+      - name: Check First Comment
+        id: check_comment
+        run: |
+          comment_contains_run_tests_1=$(echo "${{ steps.get_comments.outputs.result }}" | jq -r '.[0].body | contains("Run Tests 1")')
+          comment_contains_run_tests_2=$(echo "${{ steps.get_comments.outputs.result }}" | jq -r '.[0].body | contains("Run Tests 2")')
+          comment_contains_run_tests_3=$(echo "${{ steps.get_comments.outputs.result }}" | jq -r '.[0].body | contains("Run Tests 3")')
+          echo "::set-output name=comment_contains_run_tests_1::$comment_contains_run_tests_1"
+          echo "::set-output name=comment_contains_run_tests_2::$comment_contains_run_tests_2"
+          echo "::set-output name=comment_contains_run_tests_3::$comment_contains_run_tests_3"
+        shell: bash            
