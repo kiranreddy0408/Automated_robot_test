@@ -8,7 +8,7 @@ on:
 jobs:
   run_tests1:
     runs-on: ubuntu-latest
-    if: ${{ github.event.pull_request.title == 'Run Tests 1' }}
+    if: ${{ github.event.pull_request.title =~ 'Run Tests 1' }}
     steps:
         # checkout code from a repository
         - uses: actions/checkout@v3
@@ -40,7 +40,7 @@ jobs:
             path: ${{ github.workspace }}/reports
   run_tests2:
     runs-on: ubuntu-latest
-    if: ${{ github.event.pull_request.title == 'Run Tests 2' }}
+    if: ${{ github.event.pull_request.title =~ 'Run Tests 2' }}
     steps:
         # checkout code from a repository
         - uses: actions/checkout@v3
@@ -73,7 +73,7 @@ jobs:
 
   run_tests3:
     runs-on: ubuntu-latest
-    if: ${{ github.event.pull_request.title == 'Run Tests 3' }}
+    if: ${{ github.event.pull_request.title =~ 'Run Tests 3' }}
     steps:
         # checkout code from a repository
         - uses: actions/checkout@v3
