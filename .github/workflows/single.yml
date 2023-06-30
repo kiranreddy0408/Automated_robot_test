@@ -18,10 +18,11 @@ jobs:
             docker run \
               -v ${PWD}/reports:/opt/robotframework/reports:Z \
               -v ${PWD}/tests:/opt/robotframework/tests:Z \
-              -e ROBOT_OPTIONS="--variable DINOSAUR:Achillobator --variable NOT_DINOSAUR:kissa --variable URL:http://dev4.gptfu.com:9081" \
+              -e ROBOT_OPTIONS="--variable DINOSAUR:Achillobator --variable NOT_DINOSAUR:kissa --variable ${URL}:http://dev4.gptfu.com:9081" \
+              -e ROBOT_OPTIONS="--variable DINOSAUR:Achillobator --variable NOT_DINOSAUR:kissa --variable ${URL}:${URL}/wp-admin/" \
               --user $(id -u):$(id -g) \
               ppodgorsek/robot-framework:latest
-        - name: Upload reports
+        - name: Upload reports${URL}wp-admin/
           uses: actions/upload-artifact@v3
           if: always()
           with:
@@ -41,6 +42,7 @@ jobs:
               -v ${PWD}/reports:/opt/robotframework/reports:Z \
               -v ${PWD}/tests:/opt/robotframework/tests:Z \
               -e ROBOT_OPTIONS="--variable DINOSAUR:Achillobator --variable NOT_DINOSAUR:kissa --variable URL:http://dev5.gptfu.com:6080" \
+              -e ROBOT_OPTIONS="--variable DINOSAUR:Achillobator --variable NOT_DINOSAUR:kissa --variable ${URL}:${URL}/wp-admin/" \
               --user $(id -u):$(id -g) \
               ppodgorsek/robot-framework:latest
         - name: Upload reports
@@ -62,7 +64,8 @@ jobs:
             docker run \
               -v ${PWD}/reports:/opt/robotframework/reports:Z \
               -v ${PWD}/tests:/opt/robotframework/tests:Z \
-              -e ROBOT_OPTIONS="--variable DINOSAUR:Achillobator --variable NOT_DINOSAUR:kissa" \
+              --e ROBOT_OPTIONS="--variable DINOSAUR:Achillobator --variable NOT_DINOSAUR:kissa --variable URL:http://dev4.gptfu.com:6080" \
+              -e ROBOT_OPTIONS="--variable DINOSAUR:Achillobator --variable NOT_DINOSAUR:kissa --variable ${URL}:${URL}/wp-admin/" \
               --user $(id -u):$(id -g) \
               ppodgorsek/robot-framework:latest
         - name: Upload reports
