@@ -1,0 +1,73 @@
+name: dev4-6080 Test Suite runner
+
+on:
+  pull_request:
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  run_tests1:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.pull_request.title == 'Run Tests 1' }}
+    steps:
+        - uses: actions/checkout@v3
+        - name: Create folder for reports
+          run: mkdir reports
+        - name: dev4-9081 Test Suite runner
+          run: |
+            docker run \
+              -v ${PWD}/reports:/opt/robotframework/reports:Z \
+              -v ${PWD}/tests:/opt/robotframework/tests:Z \
+              -e ROBOT_OPTIONS="--variable DINOSAUR:Achillobator --variable NOT_DINOSAUR:kissa --variable URL:http://dev4.gptfu.com:9081" \
+              --user $(id -u):$(id -g) \
+              ppodgorsek/robot-framework:latest
+        - name: Upload reports
+          uses: actions/upload-artifact@v3
+          if: always()
+          with:
+            name: reports
+            path: ${{ github.workspace }}/reports
+
+  run_tests2:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.pull_request.title == 'Run Tests 2' }}
+    steps:
+        - uses: actions/checkout@v3
+        - name: Create folder for reports
+          run: mkdir reports
+        - name: dev5 Test Suite runner
+          run: |
+            docker run \
+              -v ${PWD}/reports:/opt/robotframework/reports:Z \
+              -v ${PWD}/tests:/opt/robotframework/tests:Z \
+              -e ROBOT_OPTIONS="--variable DINOSAUR:Achillobator --variable NOT_DINOSAUR:kissa --variable URL:http://dev5.gptfu.com:6080" \
+              --user $(id -u):$(id -g) \
+              ppodgorsek/robot-framework:latest
+        - name: Upload reports
+          uses: actions/upload-artifact@v3
+          if: always()
+          with:
+            name: reports
+            path: ${{ github.workspace }}/reports
+
+  run_tests3:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.pull_request.title == 'Run Tests 3' }}
+    steps:
+        - uses: actions/checkout@v3
+        - name: Create folder for reports
+          run: mkdir reports
+        - name: dev4-6080 Test Suite runner
+          run: |
+            docker run \
+              -v ${PWD}/reports:/opt/robotframework/reports:Z \
+              -v ${PWD}/tests:/opt/robotframework/tests:Z \
+              -e ROBOT_OPTIONS="--variable DINOSAUR:Achillobator --variable NOT_DINOSAUR:kissa" \
+              --user $(id -u):$(id -g) \
+              ppodgorsek/robot-framework:latest
+        - name: Upload reports
+          uses: actions/upload-artifact@v3
+          if: always()
+          with:
+            name: reports
+            path: ${{ github.workspace }}/reports
