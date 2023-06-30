@@ -2,7 +2,7 @@
 Documentation     My First Test Suite
 Library           SeleniumLibrary
 *** Variables ***
-${URL2}                 ${URL}wp-admin/
+${URL2}                 ${URL}/wp-admin/
 ${Browser}              firefox
 ${TitleInput}        id=product-name
 ${WebURLInput}       id=web-url
@@ -42,7 +42,7 @@ wp-login
     Input Text    ${UsernameInput}   ${UsernameKeyword}  
     Input Text    ${PasswordInput}      ${PasswordKeyword}
     Click Element   ${loginButton}
-    Click Element    xpath=//a[@href="${URL}"]
+    Click Element    xpath=//a[@href="${URL}/"]
     Click Element    xpath=//a[@href="/my-account/createproduct/"]
 Check Variables for Radio Buttons(all except blogs)
 
