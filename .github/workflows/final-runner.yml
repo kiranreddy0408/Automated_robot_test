@@ -13,7 +13,7 @@ jobs:
         - uses: actions/checkout@v3
         - name: Create folder for reports
           run: mkdir reports
-        - name: dev4-6080 Test Suite runner
+        - name: kiran-d2 Test Suite runner
           run: |
             docker run \
               -v ${PWD}/reports:/opt/robotframework/reports:Z \
@@ -30,12 +30,77 @@ jobs:
 
   joel-dev4:
     runs-on: ubuntu-latest
-    if: ${{ github.event.pull_request.title == 'Run Tests 2' }}
+    if: ${{ github.event.pull_request.title == 'joel-dev4' }}
     steps:
         - uses: actions/checkout@v3
         - name: Create folder for reports
           run: mkdir reports
-        - name: dev5 Test Suite runner
+        - name: joel-dev4 Test Suite runner
+          run: |
+            docker run \
+              -v ${PWD}/reports:/opt/robotframework/reports:Z \
+              -v ${PWD}/tests:/opt/robotframework/tests:Z \
+              -e ROBOT_OPTIONS="--variable DINOSAUR:Achillobator --variable NOT_DINOSAUR:kissa --variable URL:http://dev4.gptfu.com:6080" \
+              --user $(id -u):$(id -g) \
+              ppodgorsek/robot-framework:latest
+        - name: Upload reports
+          uses: actions/upload-artifact@v3
+          if: always()
+          with:
+            name: reports
+            path: ${{ github.workspace }}/reports
+
+  madhu-d:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.pull_request.title == 'madhu-d' }}
+    steps:
+        - uses: actions/checkout@v3
+        - name: Create folder for reports
+          run: mkdir reports
+        - name: madhu-d Test Suite runner
+          run: |
+            docker run \
+              -v ${PWD}/reports:/opt/robotframework/reports:Z \
+              -v ${PWD}/tests:/opt/robotframework/tests:Z \
+              -e ROBOT_OPTIONS="--variable DINOSAUR:Achillobator --variable NOT_DINOSAUR:kissa --variable URL:http://d.gptfu.com:6082" \
+              --user $(id -u):$(id -g) \
+              ppodgorsek/robot-framework:latest
+        - name: Upload reports
+          uses: actions/upload-artifact@v3
+          if: always()
+          with:
+            name: reports
+            path: ${{ github.workspace }}/reports
+  anuj-d3:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.pull_request.title == 'anuj-d3' }}
+    steps:
+        - uses: actions/checkout@v3
+        - name: Create folder for reports
+          run: mkdir reports
+        - name: anuj-d3 Test Suite runner
+          run: |
+            docker run \
+              -v ${PWD}/reports:/opt/robotframework/reports:Z \
+              -v ${PWD}/tests:/opt/robotframework/tests:Z \
+              -e ROBOT_OPTIONS="--variable DINOSAUR:Achillobator --variable NOT_DINOSAUR:kissa --variable URL:http://d3.gptfu.com:9080" \
+              --user $(id -u):$(id -g) \
+              ppodgorsek/robot-framework:latest
+        - name: Upload reports
+          uses: actions/upload-artifact@v3
+          if: always()
+          with:
+            name: reports
+            path: ${{ github.workspace }}/reports
+
+  madhusri-dev5:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.pull_request.title == 'madhusri-dev5' }}
+    steps:
+        - uses: actions/checkout@v3
+        - name: Create folder for reports
+          run: mkdir reports
+        - name: madhusri-dev5 Test Suite runner
           run: |
             docker run \
               -v ${PWD}/reports:/opt/robotframework/reports:Z \
@@ -50,40 +115,19 @@ jobs:
             name: reports
             path: ${{ github.workspace }}/reports
 
-  madhu-d:
+  phani-dev4:
     runs-on: ubuntu-latest
-    if: ${{ github.event.pull_request.title == 'Run Tests 3' }}
+    if: ${{ github.event.pull_request.title == 'phani-dev4' }}
     steps:
         - uses: actions/checkout@v3
         - name: Create folder for reports
           run: mkdir reports
-        - name: dev4-6080 Test Suite runner
+        - name: phani-dev4 Test Suite runner
           run: |
             docker run \
               -v ${PWD}/reports:/opt/robotframework/reports:Z \
               -v ${PWD}/tests:/opt/robotframework/tests:Z \
-              -e ROBOT_OPTIONS="--variable DINOSAUR:Achillobator --variable NOT_DINOSAUR:kissa" \
-              --user $(id -u):$(id -g) \
-              ppodgorsek/robot-framework:latest
-        - name: Upload reports
-          uses: actions/upload-artifact@v3
-          if: always()
-          with:
-            name: reports
-            path: ${{ github.workspace }}/reports
-    -d2:
-    runs-on: ubuntu-latest
-    if: ${{ github.event.pull_request.title == 'kiran-d2' }}
-    steps:
-        - uses: actions/checkout@v3
-        - name: Create folder for reports
-          run: mkdir reports
-        - name: dev4-6080 Test Suite runner
-          run: |
-            docker run \
-              -v ${PWD}/reports:/opt/robotframework/reports:Z \
-              -v ${PWD}/tests:/opt/robotframework/tests:Z \
-              -e ROBOT_OPTIONS="--variable DINOSAUR:Achillobator --variable NOT_DINOSAUR:kissa --variable URL:http://d2.gptfu.com:6080" \
+              -e ROBOT_OPTIONS="--variable DINOSAUR:Achillobator --variable NOT_DINOSAUR:kissa --variable URL:http://dev4.gptfu.com:9080" \
               --user $(id -u):$(id -g) \
               ppodgorsek/robot-framework:latest
         - name: Upload reports
@@ -93,19 +137,40 @@ jobs:
             name: reports
             path: ${{ github.workspace }}/reports
 
-  joel-dev4:
+  pashu-dev5:
     runs-on: ubuntu-latest
-    if: ${{ github.event.pull_request.title == 'Run Tests 2' }}
+    if: ${{ github.event.pull_request.title == 'pashu-dev5' }}
     steps:
         - uses: actions/checkout@v3
         - name: Create folder for reports
           run: mkdir reports
-        - name: dev5 Test Suite runner
+        - name: pashu-dev5 Test Suite runner
           run: |
             docker run \
               -v ${PWD}/reports:/opt/robotframework/reports:Z \
               -v ${PWD}/tests:/opt/robotframework/tests:Z \
-              -e ROBOT_OPTIONS="--variable DINOSAUR:Achillobator --variable NOT_DINOSAUR:kissa --variable URL:http://dev5.gptfu.com:6080" \
+              -e ROBOT_OPTIONS="--variable DINOSAUR:Achillobator --variable NOT_DINOSAUR:kissa --variable URL:http://dev5.gptfu.com:9081" \
+              --user $(id -u):$(id -g) \
+              ppodgorsek/robot-framework:latest
+        - name: Upload reports
+          uses: actions/upload-artifact@v3
+          if: always()
+          with:
+            name: reports
+            path: ${{ github.workspace }}/reports
+  mira-d3:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.pull_request.title == 'mira-d3' }}
+    steps:
+        - uses: actions/checkout@v3
+        - name: Create folder for reports
+          run: mkdir reports
+        - name: mira-d3 Test Suite runner
+          run: |
+            docker run \
+              -v ${PWD}/reports:/opt/robotframework/reports:Z \
+              -v ${PWD}/tests:/opt/robotframework/tests:Z \
+              -e ROBOT_OPTIONS="--variable DINOSAUR:Achillobator --variable NOT_DINOSAUR:kissa --variable URL:http://d3.gptfu.com:8080" \
               --user $(id -u):$(id -g) \
               ppodgorsek/robot-framework:latest
         - name: Upload reports
@@ -115,19 +180,62 @@ jobs:
             name: reports
             path: ${{ github.workspace }}/reports
 
-  madhu-d:
+  hari-d3:
     runs-on: ubuntu-latest
-    if: ${{ github.event.pull_request.title == 'Run Tests 3' }}
+    if: ${{ github.event.pull_request.title == 'hari-d3' }}
     steps:
         - uses: actions/checkout@v3
         - name: Create folder for reports
           run: mkdir reports
-        - name: dev4-6080 Test Suite runner
+        - name: hari-d3 Test Suite runner
           run: |
             docker run \
               -v ${PWD}/reports:/opt/robotframework/reports:Z \
               -v ${PWD}/tests:/opt/robotframework/tests:Z \
-              -e ROBOT_OPTIONS="--variable DINOSAUR:Achillobator --variable NOT_DINOSAUR:kissa" \
+              -e ROBOT_OPTIONS="--variable DINOSAUR:Achillobator --variable NOT_DINOSAUR:kissa --variable URL:http://d3.gptfu.com:7080" \
+              --user $(id -u):$(id -g) \
+              ppodgorsek/robot-framework:latest
+        - name: Upload reports
+          uses: actions/upload-artifact@v3
+          if: always()
+          with:
+            name: reports
+            path: ${{ github.workspace }}/reports
+
+  aman-d:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.pull_request.title == 'aman-d' }}
+    steps:
+        - uses: actions/checkout@v3
+        - name: Create folder for reports
+          run: mkdir reports
+        - name: aman-d Test Suite runner
+          run: |
+            docker run \
+              -v ${PWD}/reports:/opt/robotframework/reports:Z \
+              -v ${PWD}/tests:/opt/robotframework/tests:Z \
+              -e ROBOT_OPTIONS="--variable DINOSAUR:Achillobator --variable NOT_DINOSAUR:kissa --variable URL:http://d.gptfu.com:4080" \
+              --user $(id -u):$(id -g) \
+              ppodgorsek/robot-framework:latest
+        - name: Upload reports
+          uses: actions/upload-artifact@v3
+          if: always()
+          with:
+            name: reports
+            path: ${{ github.workspace }}/reports
+  varun-d:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.pull_request.title == 'varun-d' }}
+    steps:
+        - uses: actions/checkout@v3
+        - name: Create folder for reports
+          run: mkdir reports
+        - name: aman-d Test Suite runner
+          run: |
+            docker run \
+              -v ${PWD}/reports:/opt/robotframework/reports:Z \
+              -v ${PWD}/tests:/opt/robotframework/tests:Z \
+              -e ROBOT_OPTIONS="--variable DINOSAUR:Achillobator --variable NOT_DINOSAUR:kissa --variable URL:http://d.gptfu.com:9080" \
               --user $(id -u):$(id -g) \
               ppodgorsek/robot-framework:latest
         - name: Upload reports
