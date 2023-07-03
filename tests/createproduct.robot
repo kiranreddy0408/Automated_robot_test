@@ -33,6 +33,7 @@ ${PasswordKeyword}       GPTfu!Rocks
 @{IDs}        listing_app    listing_paper    listing_news   listing_tutorial    listing_misc       # Replace with actual radio button IDs
 # ${TextToCheck}    Title*    Website Link       # Replace with actual field variables
 ${blog_id}    listing_blog
+${prompt_id}  listing_prompt
 # @{blog-IDs}        product-name    website_link_section    video_link_section    appSummarySection   product-description     author_section    image_section
 @{TextToCheck}    Tite*    Website Link    Video Link    Description*    Summary    Use ChatGPT 3.5 to automatically generate a three point summary:     Tags*    Authors Name*
 @{TextToCheck}    Tite*    Website Link    Video Link    Description*    Summary    Use ChatGPT 3.5 to automatically generate a three point summary:     Tags*    Authors Name*
@@ -42,7 +43,7 @@ wp-login
     Input Text    ${UsernameInput}   ${UsernameKeyword}  
     Input Text    ${PasswordInput}      ${PasswordKeyword}
     Click Element   ${loginButton}
-    Click Element    xpath=//a[@href="${URL}"]
+    Click Element    xpath=//a[@href="${URL}/"]
     Click Element    xpath=//a[@href="/my-account/createproduct/"]
 Check Variables for Radio Buttons(all except blogs)
 
@@ -73,7 +74,14 @@ Add listing
 Check Variables for blog button 
     Click Element    ${blog_id}
     Page Should Contain    Title*
-    Page Should Contain    Description*
+    Page Should Contain    Description
+    Page Should Contain    Website Link
+    Page Should Contain    PDF docs
+Check Variables for blog button 
+    Click Element    ${prompt_id}
+    Page Should Contain    Prompt*
+    Page Should Contain    Output Text
+    Page Should Contain    Prompt Image
     Close Browser
     
     
