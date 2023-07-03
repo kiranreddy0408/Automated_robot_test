@@ -2,7 +2,7 @@
 Documentation     My First Test Suite
 Library           SeleniumLibrary
 *** Variables ***
-${URL2}                 ${URL}wp-admin/
+${URL2}                 ${URL}/wp-admin/
 ${Browser}              firefox
 ${TitleInput}        id=product-name
 ${WebURLInput}       id=web-url
