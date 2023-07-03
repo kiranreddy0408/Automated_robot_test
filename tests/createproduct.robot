@@ -11,28 +11,21 @@ ${DescriptionInput}      id=product-description
 ${summaryInput}        id=product-summary
 ${authorsInput}        id=authors-name
 ${tagsInput}        id=tag_inp_section
-
-
 ${Title}        vozy
 ${weburl}       https://www.vozy.co/
 ${VideoLink}    https://www.vozy.co/
 ${summary}    id=myCheck
 ${Description}   Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
 ${authors}    kiran
-
-
-
-
 ${UsernameInput}        id=user_login
 ${PasswordInput}        id=user_pass
 ${loginButton}          id=wp-submit
-
 ${UsernameKeyword}       dkmadhu115
 ${PasswordKeyword}       GPTfu!Rocks
-
 @{IDs}        listing_app    listing_paper    listing_news   listing_tutorial    listing_misc       # Replace with actual radio button IDs
 # ${TextToCheck}    Title*    Website Link       # Replace with actual field variables
 ${blog_id}    listing_blog
+${prompt_id}  listing_prompt
 # @{blog-IDs}        product-name    website_link_section    video_link_section    appSummarySection   product-description     author_section    image_section
 @{TextToCheck}    Tite*    Website Link    Video Link    Description*    Summary    Use ChatGPT 3.5 to automatically generate a three point summary:     Tags*    Authors Name*
 @{TextToCheck}    Tite*    Website Link    Video Link    Description*    Summary    Use ChatGPT 3.5 to automatically generate a three point summary:     Tags*    Authors Name*
@@ -42,10 +35,9 @@ wp-login
     Input Text    ${UsernameInput}   ${UsernameKeyword}  
     Input Text    ${PasswordInput}      ${PasswordKeyword}
     Click Element   ${loginButton}
-    Click Element    xpath=//a[@href="${URL}"]
+    Click Element    xpath=//a[@href="${URL}/"]
     Click Element    xpath=//a[@href="/my-account/createproduct/"]
 Check Variables for Radio Buttons(all except blogs)
-
    FOR    ${radio_button_id}    IN    @{IDs}
       Page Should Contain   Title*
       Page Should Contain   Website Link
@@ -73,10 +65,12 @@ Add listing
 Check Variables for blog button 
     Click Element    ${blog_id}
     Page Should Contain    Title*
-    Page Should Contain    Description*
+    Page Should Contain    Description
+    Page Should Contain    Website Link
+    Page Should Contain    PDF docs
+Check Variables for prompt button 
+    Click Element    ${prompt_id}
+    Page Should Contain    Prompt*
+    Page Should Contain    Output Text
+    Page Should Contain    Prompt Image
     Close Browser
-    
-    
-
-
-
