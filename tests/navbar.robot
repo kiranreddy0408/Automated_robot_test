@@ -3,7 +3,6 @@ Documentation     My First Test Suite
 Library           SeleniumLibrary
 
 *** Variables ***
-${URL}            http://dev4.gptfu.com:6080/
 ${Browser}        firefox
 
 *** Test Cases ***
@@ -33,6 +32,6 @@ Verify Addlisting link
      Page Should Contain  Add New Listing 
 Verify logo link
 
-    Click Element  xpath=//a[@href="${URL}" and contains(@class,'logo')]
+    Click Element  xpath=//a[@href="${URL}/" and contains(@class,'logo')]
     Page Should Contain  Latest Listings 
     Close Browser
