@@ -42,7 +42,7 @@ wp-login
     Input Text    ${UsernameInput}   ${UsernameKeyword}  
     Input Text    ${PasswordInput}      ${PasswordKeyword}
     Click Element   ${loginButton}
-    Click Element    xpath=//a[@href="${URL}"]
+    Click Element    xpath=//a[@href="${URL}/"]
     Click Element    xpath=//a[@href="/my-account/createproduct/"]
 Check Variables for Radio Buttons(all except blogs)
 
