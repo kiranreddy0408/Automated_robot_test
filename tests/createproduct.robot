@@ -73,7 +73,9 @@ Add listing
 Check Variables for blog button 
     Click Element    ${blog_id}
     Page Should Contain    Title*
-    Page Should Contain    Description*
+    Page Should Contain    Description
+    Page Should Contain    Website Link
+    Page Should Contain    PDF docs
     Close Browser
     
     
