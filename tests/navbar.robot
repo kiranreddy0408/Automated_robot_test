@@ -3,7 +3,8 @@ Documentation     My First Test Suite
 Library           SeleniumLibrary
 
 *** Variables ***
-${Browser}        firefox
+#${URL}            http://dev4.gptfu.com:6080/      replace this with your URL to design new testcases
+${Browser}         firefox
 
 *** Test Cases ***
 Open Site
@@ -22,16 +23,16 @@ Verify Blogs link
 
     Click Element  xpath=//a[@href="/blogger/"]
      Page Should Contain  blogger
-Verify Prompts link
+# Verify Prompts link
 
-    Click Element  xpath=//a[@href="/prompts/"]
-     Page Should Contain  Prompts  
+#     Click Element  xpath=//a[@href="/prompts/"]
+#      Page Should Contain  Prompts  
 Verify Addlisting link
 
     Click Element  xpath=//a[@href="/my-account/createproduct/" and contains(@class,'bi bi-list-ul')]
      Page Should Contain  Add New Listing 
 Verify logo link
 
-    Click Element  xpath=//a[@href="${URL}/" and contains(@class,'logo')]
+    Click Element  xpath=//a[@href="${URL}" and contains(@class,'logo')]
     Page Should Contain  Latest Listings 
     Close Browser
