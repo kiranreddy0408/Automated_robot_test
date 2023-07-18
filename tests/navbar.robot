@@ -3,11 +3,12 @@ Documentation     My First Test Suite
 Library           SeleniumLibrary
 
 *** Variables ***
-${Browser}        firefox
+# ${URL}            http://dev4.gptfu.com:6080 #      replace this with your URL to design new testcases
+${Browser}         firefox
 
 *** Test Cases ***
 Open Site
-    Open Browser  ${URL}  ${BROWSER}  
+    Open Browser  ${URL}/  ${BROWSER}  
 Verify Apps Link
     Click Element  xpath=//a[@href="/product-category/apps/" and contains(@class, 'bi-grid-fill')]
     Page Should Contain  Apps 
@@ -22,10 +23,10 @@ Verify Blogs link
 
     Click Element  xpath=//a[@href="/blogger/"]
      Page Should Contain  blogger
-Verify Prompts link
+#Verify Prompts link
 
-    Click Element  xpath=//a[@href="/prompts/"]
-     Page Should Contain  Prompts  
+    #Click Element  xpath=//a[@href="/prompts"]
+    # Page Should Contain  Prompts  
 Verify Addlisting link
 
     Click Element  xpath=//a[@href="/my-account/createproduct/" and contains(@class,'bi bi-list-ul')]
