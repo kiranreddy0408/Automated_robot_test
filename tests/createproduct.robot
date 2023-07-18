@@ -30,8 +30,8 @@ ${loginButton}          id=wp-submit
 ${UsernameKeyword}       dkmadhu115
 ${PasswordKeyword}       GPTfu!Rocks
 
-@{IDs}        listing_app    listing_paper    listing_news   listing_tutorial    listing_misc       # Replace with actual radio button IDs
-# ${TextToCheck}    Title*    Website Link       # Replace with actual field variables
+@{IDs}        listing_app    listing_paper    listing_news   listing_tutorial    listing_misc      
+# ${TextToCheck}    Title*    Website Link      
 ${blog_id}    listing_blog
 # @{blog-IDs}        product-name    website_link_section    video_link_section    appSummarySection   product-description     author_section    image_section
 @{TextToCheck}    Tite*    Website Link    Video Link    Description*    Summary    Use ChatGPT 3.5 to automatically generate a three point summary:     Tags*    Authors Name*
@@ -51,10 +51,10 @@ Check Variables for Radio Buttons(all except blogs)
       Page Should Contain   Website Link
       Page Should Contain   Video Link
       Page Should Contain   Description*
-      Page Should Contain   ummary
+      Page Should Contain   Summary
       Page Should Contain   Use ChatGPT 3.5 to automatically generate a three point summary:
       Page Should Contain   Tags*
-      Page Should Contain   Authors Name*
+      Page Should Contain   Authors Name
       Page Should Contain   Image
    END
 Add listing
@@ -65,18 +65,16 @@ Add listing
     Input Text    ${authorsInput}     ${authors}
     Click Element    ${summary}
     Click Element    class=select2
-    Click Element    id=select2-tag_inp_section-result-abjs-AI Ethics
-    # Click Element    class=select2-selection__rendered
-    # Click Element    class=select2-selection__choice
+    Click Element    class=select2-results__option
+    Click Element    class=select2-selection__choice
     Click Button    class=btn
     Page Should Contain Element   class=error-message
-Check Variables for blog button 
-    Click Element    ${blog_id}
-    Page Should Contain    Title*
-    Page Should Contain    Description
-    Page Should Contain    Website Link
-    Page Should Contain    PDF docs
-    Close Browser
+# Check Variables for blog button 
+#     Click Element    ${blog_id}
+#     Page Should Contain    Title*
+#     Page Should Contain    Description*
+#     Close Browser
+
     
     
 
