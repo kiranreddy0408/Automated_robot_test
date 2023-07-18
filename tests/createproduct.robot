@@ -65,8 +65,8 @@ Add listing
     Input Text    ${authorsInput}     ${authors}
     Click Element    ${summary}
     Click Element    class=select2
+    Click Element    class=selection
     Click Element    id=select2-tag_inp_section-result-abjs-AI Ethics
-    # Click Element    class=select2-selection__rendered
     # Click Element    class=select2-selection__choice
     Click Button    class=btn
     Page Should Contain Element   class=error-message
