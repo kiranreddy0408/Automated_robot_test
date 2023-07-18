@@ -1,6 +1,10 @@
 *** Settings ***
 Documentation     My First Test Suite
 Library           SeleniumLibrary
+*** Keywords ***
+Test With Viewport
+    [Arguments]    ${width}    ${height}
+    Set Window Size    ${width}    ${height}
 *** Variables ***
 ${URL2}                 ${URL}/wp-admin/
 ${Browser}              firefox
@@ -39,6 +43,10 @@ ${blog_id}    listing_blog
 *** Test Cases ***
 wp-login
     Open Browser    ${URL2}    ${Browser}
+Test Buttons with Different Viewports
+    [Documentation]    Test the buttons on the website with different viewports
+    Test With Viewport   1820    1080 
+    # Add more test cases with different resolutions as needed
     Input Text    ${UsernameInput}   ${UsernameKeyword}  
     Input Text    ${PasswordInput}      ${PasswordKeyword}
     Click Element   ${loginButton}
