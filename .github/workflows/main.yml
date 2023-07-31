@@ -1,0 +1,27 @@
+name: Nightly Test
+
+on:
+  schedule:
+    - cron: "0 0 * * *"   # This schedule runs every night at midnight UTC (adjust according to your timezone)
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.9"   # Replace with the Python version you need for Robot Framework
+
+      - name: Install dependencies
+        run: |
+          pip install robotframework
+          pip install robotframework-seleniumlibrary
+
+      - name: Run Robot Framework tests
+        run: |
+          robot tests/   # Replace with the actual path to your Robot Framework test cases
