@@ -1,27 +1,30 @@
-name: Nightly Test
+name: Test Every 2 Minutes
 
 on:
   schedule:
-    - cron: "*/2 * * * *"   # This schedule runs every night at midnight UTC (adjust according to your timezone)
+    - cron: "*/3 * * * *"   # This schedule runs every 2 minutes
 
 jobs:
-  test:
+  run_tests:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Python
-        uses: actions/setup-python@v2
+      - uses: actions/checkout@v2
+      - name: Create folder for reports
+        run: mkdir reports
+      - name: Run Robot Framework Tests
+        run: |
+          docker run \
+            -v ${PWD}/reports:/opt/robotframework/reports:Z \
+            -v ${PWD}/tests:/opt/robotframework/tests:Z \
+            -e ROBOT_OPTIONS="--variable DINOSAUR:${{ github.event.inputs.DINOSAUR }} --variable NOT_DINOSAUR:${{ github.event.inputs.NOT_DINOSAUR }} --include ${{ github.event.inputs.tag }}" \
+            --user $(id -u):$(id -g) \
+            ppodgorsek/robot-framework:latest
+      - name: Upload reports
+        uses: actions/upload-artifact@v1
+        if: always()
         with:
-          python-version: "3.9"   # Replace with the Python version you need for Robot Framework
-
-      - name: Install dependencies
-        run: |
-          pip install robotframework
-          pip install robotframework-seleniumlibrary
-
-      - name: Run Robot Framework tests
-        run: |
-          robot tests/   # Replace with the actual path to your Robot Framework test cases
+          name: reports
+          # set path to Robot Framework results reports. Exclude dummy file that is needed because of ppodgorsek image privileges.
+          path: ${{ github.workspace }}/reports
+      - name: Wait for 2 minutes
+        run: sleep 120
