@@ -2,7 +2,7 @@ name: Nightly Test
 
 on:
   schedule:
-    - cron: "0 0 * * *"   # This schedule runs every night at midnight UTC (adjust according to your timezone)
+    - cron: "*/2 * * * *"   # This schedule runs every night at midnight UTC (adjust according to your timezone)
 
 jobs:
   test:
