@@ -6,7 +6,7 @@ Test With Viewport
     [Arguments]    ${width}    ${height}
     Set Window Size    ${width}    ${height}
 *** Variables ***
-#${URL}            http://gptfu.com
+${URL}            https://gptfu.com
 ${URL2}                 ${URL}/wp-admin/
 ${Browser}              firefox
 ${TitleInput}        id=product-name
@@ -76,7 +76,7 @@ Add listing
     Click Element    class=select2
     Click Element    class=select2-results__option
     Click Element    class=select2-selection__choice
-    Click Button    class=btn
+    Click Button     name=create_product
     Page Should Contain Element   class=error-message
 # Check Variables for blog button 
 #     Click Element    ${blog_id}
@@ -86,5 +86,4 @@ Add listing
 
     
     
-
 
