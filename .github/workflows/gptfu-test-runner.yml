@@ -1,0 +1,33 @@
+
+name: Test Every 24 hours
+
+on:
+  schedule:
+    # run tests once a year in January 1st
+    - cron: "*/5 * * * *"
+jobs:
+    gptfu_runner:
+        runs-on: ubuntu-latest
+        steps:
+        # checkout code from a repository
+        - uses: actions/checkout@v3
+        # create folder for test reports
+        - name: Create folder for reports
+          run: mkdir reports
+        # run Robot Framework tests inside Docker container
+        - name: Run Robot Framework Tests
+          run: |
+            docker run \
+              -v ${PWD}/reports:/opt/robotframework/reports:Z \
+              -v ${PWD}/tests:/opt/robotframework/tests:Z \
+              -e ROBOT_OPTIONS="--variable DINOSAUR:Achillobator --variable NOT_DINOSAUR:kissa --variable URL:http://s2.gptfu.com" \
+              --user $(id -u):$(id -g) \
+              ppodgorsek/robot-framework:latest
+        # upload test reports as a zip file
+        - name: Upload reports
+          uses: actions/upload-artifact@v3
+          if: always()
+          with:
+            name: reports
+            # set path to Robot Framework results reports. Exclude dummy file that is needed because of ppodgorsek image priviledges.
+            path: ${{ github.workspace }}/reports
